@@ -1,0 +1,43 @@
+#txt数据自动生成excel表格脚本
+#宋生
+#2019.9.5
+#excel没法复制不规则格式的表格，所以首先复制到txt，再生成新表格
+
+
+import xlwt
+
+#数据清洗，将空行和特殊符号去掉
+f = open('work.txt')
+g = open('result.txt', 'w')
+try:
+    while True:
+        line = f.readline()
+        if len(line) == 0:
+            break
+        if line.count('\n') == len(line):
+            continue
+        g.write(line)
+finally:
+    f.close()
+
+#新建列表，将txt转为列表形式
+datals=[]
+fopen = open("result.txt", 'r')
+lines = fopen.readlines()
+for j in lines:
+    j.replace("\n！@#￥%……&*（）——+}{：“|《》？","")
+    datals.append(list(j.split(",")))
+fopen.close()
+
+# 新建一个excel文件
+file = xlwt.Workbook(encoding='utf-8', style_compression=0)
+
+# 新建一个sheet
+sheet = file.add_sheet('data')
+
+# 写入
+i = 0
+for line in lines:
+    sheet.write(i, 0, line)
+    i = i + 1
+file.save('事项生成表格.xls')
