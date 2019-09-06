@@ -1,38 +1,25 @@
-class Person(object):
-
-    def __init__(self, name, age):
+class Person():
+    def __init__(self,name,age):
         self._name = name
         self._age = age
-
-    # 访问器 - getter方法
-    @property
-    def name(self):
-        return self._name
-
-    # 访问器 - getter方法
     @property
     def age(self):
         return self._age
+    def name(self):
+        return self._name
 
-    # 修改器 - setter方法
     @age.setter
-    def age(self, age):
+    def age(self,age):
         self._age = age
-
     def play(self):
-        if self._age <= 16:
-            print('%s正在玩飞行棋.' % self._name)
+        if self._age > 18:
+            print("{}正在玩斗地主".format(self._name))
         else:
-            print('%s正在玩斗地主.' % self._name)
-
-
+            print("{}正在玩沙子和吃土".format(self._name))
 def main():
-    person = Person('王大锤', 12)
+    person = Person("wangdachui",12)
     person.play()
     person.age = 22
     person.play()
-    # person.name = '白元芳'  # AttributeError: can't set attribute
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
