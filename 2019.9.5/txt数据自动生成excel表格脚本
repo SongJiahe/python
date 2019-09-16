@@ -7,8 +7,8 @@
 import xlwt
 
 #数据清洗，将空行和特殊符号去掉
-f = open('work.txt')
-g = open('result.txt', 'w')
+f = open('work.txt',encoding='utf-8')
+g = open('result.txt', 'w',encoding='utf-8')
 try:
     while True:
         line = f.readline()
@@ -22,10 +22,10 @@ finally:
 
 #新建列表，将txt转为列表形式
 datals=[]
-fopen = open("result.txt", 'r')
+fopen = open("result.txt", 'r',encoding='utf-8')
 lines = fopen.readlines()
 for j in lines:
-    j.replace("\n！@#￥%……&*（）——+}{：“|《》？","")
+    j.replace("\n！@#￥%……&*（）——+}{：“|？","")
     datals.append(list(j.split(",")))
 fopen.close()
 
